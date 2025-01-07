@@ -1,0 +1,14 @@
+{
+  "categoria": [
+    {
+      "id": "3869",
+      "nome": "Consoles",
+      "desc": "Consoles de variadas empresas"
+    },
+    {
+      "id": "94c2",
+      "nome": "nova categoria",
+      "desc": "teste categoria"
+    }
+  ]
+}
