@@ -3,7 +3,7 @@
 import './App.css'
 import axios from 'axios';
 import { FormEvent, useEffect, useState } from 'react'
-import { Bounce, toast } from 'react-toastify';
+import { Bounce, toast, ToastContainer } from 'react-toastify';
 import { FaPen, FaTrash } from 'react-icons/fa';
 
 interface ICategoria {
@@ -18,7 +18,7 @@ export default function Home() {
   const [id, setId] = useState("");
   const [nome, setNome] = useState("");
   const [desc, setDesc] = useState("");
-  const [search, setSearch] = useState(""); // Novo estado para busca
+  const [search, setSearch] = useState("");
   
   const [data, setData] = useState([]);
   const [classInserir, setClassInserir] = useState("");
@@ -49,29 +49,21 @@ export default function Home() {
       alert("Insira uma Descrição da Categoria!")
       return true;
     } else {
-      toast.success('O Cadastro foi realizado com Sucesso!', {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        transition: Bounce
-      })
-
       Inserir();
+      setNome("");
+      setDesc("");
+      toast.success('O Cadastro foi realizado com Sucesso!')
     }
-
-    setNome("");
-    setDesc("");
   }
 
   /* Remover */
   const Remover = (id: string, nome: string) => {
-    const confirm = window.confirm('Deseja realmente apagar  ? ' + nome )
+    const confirm = window.confirm('Deseja apagar  ? ' + nome )
     if(confirm){  
       setId(id)
 
       axios.delete(url + "/" + id)
-      toast.success('A Categoria foi Apagada com Sucesso!', {
+      toast.success('A Categoria foi Apagada!', {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -129,7 +121,7 @@ export default function Home() {
   /* Mostrar na tela */
   return (
     <div className="container mt-4">      
-      
+      <ToastContainer />
       <h2>Cadastro de Categorias</h2>
 
       <form className="mt-5 mb-4">
@@ -169,14 +161,20 @@ export default function Home() {
           </div>
           {/* Botões e controle */}
           <div className="d-flex items-start gap-2">
-            <button className={`btn btn-success rounded-md ${classInserir}`} onClick={Validar}>Inserir</button>
-            <button className={`btn btn-warning rounded-md ${classEditar}`} onClick={Editar}>Alterar</button>
+            <button className={`btn btn-success rounded-md ${classInserir}`} 
+              onClick={Validar}>Inserir</button>
+            <button className={`btn btn-warning rounded-md ${classEditar}`} 
+              onClick={Editar}>Alterar</button>
+            <button className={`btn btn-danger rounded-md ${classEditar}`} 
+              onClick={Editar}>Cancelar</button>
           </div>
+          
       </form>
 
       <h2 className='mb-4'>Lista de Categorias</h2>
       
       <table className="table table">
+        
         <thead>
           <tr>
             <td>ID</td>
@@ -185,6 +183,7 @@ export default function Home() {
             <td className='text-center'>Ações</td>
           </tr>
         </thead>
+        
         <tbody>
           {filteredData.map((item: ICategoria) => (
             <tr key={item.id}>
@@ -192,18 +191,21 @@ export default function Home() {
               <td>{item.nome}</td>
               <td className='mx-2'>{item.desc}</td>
               <td className="mx-2 text-center">
-                <button className="btn btn-warning mx-2" onClick={() => Carregar(item.id, item.nome, item.desc)}>
+                <button className="btn btn-warning mx-2" onClick={() => 
+                  Carregar(item.id, item.nome, item.desc)}>
                   <FaPen  />
                 </button>
-                <button className="btn btn-danger" onClick={() => Remover(item.id, item.nome)}>
+                <button className="btn btn-danger" onClick={() => 
+                  Remover(item.id, item.nome)}>
                   <FaTrash />
                 </button>
               </td>
             </tr>
           ))}
         </tbody>
+
       </table>
-      
+    
     </div>
   )
 }
