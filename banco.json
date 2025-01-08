@@ -1,14 +1,19 @@
 {
   "categoria": [
     {
-      "id": "3869",
-      "nome": "Consoles",
-      "desc": "Consoles de variadas empresas"
-    },
-    {
       "id": "94c2",
       "nome": "nova categoria",
       "desc": "teste categoria"
+    },
+    {
+      "id": "0c86",
+      "nome": "eletronicos",
+      "desc": "notebooks, computadores, smart-tv, etc"
+    },
+    {
+      "id": "c737",
+      "nome": "home",
+      "desc": "utilitários para sua casa"
     }
   ]
 }

@@ -39,7 +39,7 @@ export default function Home() {
   }
 
   /* Valida os Campos */
-  const Cadastrar = (event: FormEvent) => {
+  const Validar = (event: FormEvent) => {
     event.preventDefault();
 
     if (nome === "") {
@@ -169,7 +169,7 @@ export default function Home() {
           </div>
           {/* Botões e controle */}
           <div className="d-flex items-start gap-2">
-            <button className={`btn btn-success rounded-md ${classInserir}`} onClick={Cadastrar}>Inserir</button>
+            <button className={`btn btn-success rounded-md ${classInserir}`} onClick={Validar}>Inserir</button>
             <button className={`btn btn-warning rounded-md ${classEditar}`} onClick={Editar}>Alterar</button>
           </div>
       </form>
@@ -203,6 +203,7 @@ export default function Home() {
           ))}
         </tbody>
       </table>
+      
     </div>
   )
 }
