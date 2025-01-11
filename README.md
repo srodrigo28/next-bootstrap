@@ -1,4 +1,4 @@
-### Next.JS 15 + Bootstrap
+### Next.JS 15 + Bootstrap Ajuste
 
 #### Pages
 <img src="./screens/page1.png" alt="não carregou imagem">
